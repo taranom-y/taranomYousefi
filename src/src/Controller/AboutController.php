@@ -8,17 +8,14 @@ class AboutController extends AbstractController
 {
 
     /**
-     * @Route (path="App\Controller\AboutController::about")
+     * @Route (path="about", name="about")
      * @return Response
      * @throws \Exception
      */
     public function about(): Response
     {
-        $about = random_int(0, 100);
-
-
         return $this->render('about/about.html.twig',[
-            'about'=>$about,
+            'controller_name'=>'HomeController',
         ]);
 
     }
