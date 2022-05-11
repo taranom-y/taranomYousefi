@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Esfahan Gasht{% endblock %}
+
+{% block body %}
+<ul>
+    <li>
+        Name:{{attraction.name}}
+    </li>
+    <li>
+        shortDescription:{{attraction.shortDescription}}
+    </li>
+    <li>
+        fullDescription:{{attraction.fullDescription}}
+    </li>
+    <li>
+        score:{{attraction.score}}
+    </li>
+</ul>
+{% endblock %}

@@ -14,9 +14,7 @@ class AboutController extends AbstractController
      */
     public function about(): Response
     {
-        return $this->render('about/about.html.twig',[
-            'controller_name'=>'HomeController',
-        ]);
+        return $this->render('about/about.html.twig');
 
     }
 }

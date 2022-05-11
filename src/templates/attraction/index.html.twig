@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Esfahan Gasht{% endblock %}
+
+{% block body %}
+
+    {%if attractions is empty%}
+        <h2>No attraction is found</h2>
+    {% else %}
+<ul>
+    {% for attraction in attractions %}
+     <a href="{path('app_attraction_view',{id:attraction.id} )}}">
+        {{attraction.name}}</a> ({{attraction.score}})
+    </li>
+    {%endfor%}
+    {%endif%}
+</ul>
+
+    <a href="{path('app_attraction_new') }}">Create new attraction
+   </a>
+    <a href="{path('app_attraction_edit') }}">edit
+    </a>
+    <a href="{path('app_attraction_delete') }}">delete
+    </a>
+{% endblock %}
