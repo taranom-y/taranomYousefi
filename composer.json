@@ -1,0 +1,7 @@
+{
+    "require": {
+        "symfony/validator": "^6.0",
+        "doctrine/annotations": "^1.13",
+        "symfony/security-csrf": "^6.0"
+    }
+}
