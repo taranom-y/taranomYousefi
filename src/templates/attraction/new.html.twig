@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Esfahan Gasht{% endblock %}
+
+{% block body %}
+<form method="post">
+    <div>
+        <lable>Name:</lable>
+        <input name="name" type="text"/>
+    </div>
+    <div>
+        <lable>Short description:</lable>
+        <input name="Short_description" type="text"/>
+    </div>
+    <div>
+        <lable>Full description:</lable>
+        <input name="Full_description" type="text"/>
+    </div>
+    <div>
+        <lable>Score:</lable>
+        <input name="score" type="text"/>
+    </div>
+    <input type="submit" />
+
+</form>
+{% endblock %}

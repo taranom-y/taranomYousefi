@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Esfahan Gasht{% endblock %}
+
+{% block body %}
+    <form>
+        <div>
+            <lable>Name:</lable>
+            <input name="name" type="text" value="{{attraction.name}}"/>
+        </div>
+        <div>
+            <lable>Short description:</lable>
+            <input name="Short_description" type="text" value="{{attraction.shortDescription}}"/>
+        </div>
+        <div>
+            <lable>Full description:</lable>
+            <input name="Full_description" type="text" value="{{attraction.fullDescription}}"/>
+        </div>
+        <div>
+            <lable>Score:</lable>
+            <input name="score" type="text" value="{{attraction.score}}"/>
+        </div>
+        <input type="submit" />
+
+    </form>
+{% endblock %}
