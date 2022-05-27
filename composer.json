@@ -2,6 +2,13 @@
     "require": {
         "symfony/validator": "^6.0",
         "doctrine/annotations": "^1.13",
-        "symfony/security-csrf": "^6.0"
+        "symfony/security-csrf": "^6.0",
+        "symfony/flex": "^2.1",
+        "symfony/webpack-encore-bundle": "^1.14"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     }
 }

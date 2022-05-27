@@ -7,6 +7,7 @@
     {%if attractions is empty%}
         <h2>No attraction is found</h2>
     {% else %}
+
 <ul>
     {% for attraction in attractions %}
      <a href="{path('app_attraction_view',{id:attraction.id} )}}">
