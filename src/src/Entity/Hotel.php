@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\TimeLoggableInterface;
 use App\Repository\HotelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
-class Hotel
+class Hotel implements TimeLoggableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

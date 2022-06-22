@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Model\TimeLoggableInterface;
 use App\Repository\MessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
-class Messages
+class Messages implements  TimeLoggableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
