@@ -3,7 +3,6 @@
 namespace App\Menu;
 
 use App\Entity\Hotel;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;

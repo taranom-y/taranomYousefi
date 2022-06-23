@@ -34,6 +34,9 @@ class Room implements TimeLoggableInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $creator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,6 +98,18 @@ class Room implements TimeLoggableInterface
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreator(): ?string
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(string $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }
