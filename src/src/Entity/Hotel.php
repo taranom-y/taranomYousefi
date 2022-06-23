@@ -2,37 +2,50 @@
 
 namespace App\Entity;
 
+use App\Model\TimeLoggableInterface;
 use App\Repository\HotelRepository;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
-class Hotel
-{
+class Hotel implements TimeLoggableInterface {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 3)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 512)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 5)]
     private $address;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $حق�price;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $stars;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Room::class, orphanRemoval: true)]
     private $rooms;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $creator;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+    }
+    public function __toString(): string
+    {
+        return "{$this->name} ( {$this->address})";
     }
 
     public function getId(): ?int
@@ -64,26 +77,26 @@ class Hotel
         return $this;
     }
 
-    public function getحق�price(): ?string
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->حق�price;
+        return $this->createdAt;
     }
 
-    public function setحق�price(string $حق�price): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
-        $this->حق�price = $حق�price;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getStars(): ?int
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->stars;
+        return $this->updatedAt;
     }
 
-    public function setStars(?int $stars): self
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
-        $this->stars = $stars;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -114,6 +127,18 @@ class Hotel
                 $room->setHotel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?string
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(string $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

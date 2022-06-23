@@ -5,14 +5,18 @@
 {% block body %}
     <h1>Hotel index</h1>
 
+<form method="get" action="{{path('app_hotel_search')}}}">
+<input type="text" name="q" value="{{q|default('')}}"/>
+    <input type="submit"/>
+</form>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Address</th>
-                <th>حق�price</th>
-                <th>Stars</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,8 +26,8 @@
                 <td>{{ hotel.id }}</td>
                 <td>{{ hotel.name }}</td>
                 <td>{{ hotel.address }}</td>
-                <td>{{ hotel.حق�price }}</td>
-                <td>{{ hotel.stars }}</td>
+                <td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_hotel_show', {'id': hotel.id}) }}">show</a>
                     <a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>

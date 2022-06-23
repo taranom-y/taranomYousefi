@@ -9,9 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Number</th>
-                <th>Empty</th>
-                <th>NumberOfBeds</th>
+                <th>NumOfBeds</th>
+                <th>IsEmpty</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,9 +18,8 @@
         {% for room in rooms %}
             <tr>
                 <td>{{ room.id }}</td>
-                <td>{{ room.number }}</td>
-                <td>{{ room.empty }}</td>
-                <td>{{ room.numberOfBeds }}</td>
+                <td>{{ room.numOfBeds }}</td>
+                <td>{{ room.isEmpty ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_room_show', {'id': room.id}) }}">show</a>
                     <a href="{{ path('app_room_edit', {'id': room.id}) }}">edit</a>
@@ -29,7 +27,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

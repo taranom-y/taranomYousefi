@@ -12,16 +12,12 @@
                 <td>{{ room.id }}</td>
             </tr>
             <tr>
-                <th>Number</th>
-                <td>{{ room.number }}</td>
+                <th>NumOfBeds</th>
+                <td>{{ room.numOfBeds }}</td>
             </tr>
             <tr>
-                <th>Empty</th>
-                <td>{{ room.empty }}</td>
-            </tr>
-            <tr>
-                <th>NumberOfBeds</th>
-                <td>{{ room.numberOfBeds }}</td>
+                <th>IsEmpty</th>
+                <td>{{ room.isEmpty ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>

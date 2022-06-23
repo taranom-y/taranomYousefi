@@ -6,12 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends  AbstractController
 {
-    /**
-     * @Route (path="/")
-     * @return Response
-     * @throws \Exception
-     */
-
+    #[Route('/', name: 'app_home')]
     public function index(): Response
     {
 

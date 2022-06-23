@@ -20,12 +20,12 @@
                 <td>{{ hotel.address }}</td>
             </tr>
             <tr>
-                <th>حق�price</th>
-                <td>{{ hotel.حق�price }}</td>
+                <th>CreatedAt</th>
+                <td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Stars</th>
-                <td>{{ hotel.stars }}</td>
+                <th>UpdatedAt</th>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

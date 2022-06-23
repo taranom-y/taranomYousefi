@@ -14,8 +14,7 @@ class HotelType extends AbstractType
         $builder
             ->add('name')
             ->add('address')
-            ->add('حق�price')
-            ->add('stars')
+
         ;
     }
 
