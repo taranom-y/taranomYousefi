@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Repository\AttractionRepository;
 use App\Entity\Attraction;
-use DateTimeImmutable;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,8 +38,7 @@ class AttractionController extends AbstractController
             $attraction->setShortDescription($shortDescription);
             $attraction->setFullDescription($fullDescription);
             $attraction->setScore($score);
-            $attraction->setCreatedAt(new DateTimeImmutable());
-            $attraction->setUpdatedAt(new DateTimeImmutable());
+
 
             $attractionRepository->add($attraction);
         }
@@ -64,7 +61,7 @@ class AttractionController extends AbstractController
             $attraction->setShortDescription($shortDescription);
             $attraction->setFullDescription($fullDescription);
             $attraction->setScore($score);
-            $attraction->setUpdatedAt(new DateTimeImmutable());
+
 
             $entityManager->flush();
         }

@@ -20,56 +20,17 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
 
     App\Listener\TimeLogeListener:
         tags:
             - name: 'doctrine.event_listener'
-                # this is the only required option for the lifecycle listener tag
               event: 'prePersist'
-
-                # listeners can define their priority in case multiple subscribers or listeners are associated
-                # to the same event (default priority = 0; higher numbers = listener is run earlier)
-              priority: 500
-
-                # you can also restrict listeners to a specific Doctrine connection
               connection: 'default'
 
             - name: 'doctrine.event_listener'
-                # this is the only required option for the lifecycle listener tag
               event: 'preUpdate'
-
-                # listeners can define their priority in case multiple subscribers or listeners are associated
-                # to the same event (default priority = 0; higher numbers = listener is run earlier)
-              priority: 500
-
-                # you can also restrict listeners to a specific Doctrine connection
               connection: 'default'
 
-    App\Listener\SetCreatorListener:
-      tags:
-        - name: 'doctrine.event_listener'
-          # this is the only required option for the lifecycle listener tag
-          event: 'prePersist'
-
-          # listeners can define their priority in case multiple subscribers or listeners are associated
-          # to the same event (default priority = 0; higher numbers = listener is run earlier)
-          priority: 500
-
-          # you can also restrict listeners to a specific Doctrine connection
-          connection: 'default'
-
-        - name: 'doctrine.event_listener'
-          # this is the only required option for the lifecycle listener tag
-          event: 'postUpdate'
-
-          # listeners can define their priority in case multiple subscribers or listeners are associated
-          # to the same event (default priority = 0; higher numbers = listener is run earlier)
-          priority: 500
-
-          # you can also restrict listeners to a specific Doctrine connection
-          connection: 'default'
 
     app.menu_builder:
         class: App\Menu\Builder

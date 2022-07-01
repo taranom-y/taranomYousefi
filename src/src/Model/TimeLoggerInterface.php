@@ -3,7 +3,7 @@
 namespace App\Model;
 use DateTimeImmutable;
 
-interface TimeLoggableInterface
+interface TimeLoggerInterface
 {
   public function setCreatedAt(DateTimeImmutable $createdAt);
 
