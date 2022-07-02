@@ -21,7 +21,7 @@ services:
             - '../src/Kernel.php'
 
 
-    App\Listener\TimeLogeListener:
+    App\Listener\TimeLoggerListener:
         tags:
             - name: 'doctrine.event_listener'
               event: 'prePersist'
@@ -31,6 +31,15 @@ services:
               event: 'preUpdate'
               connection: 'default'
 
+    App\Listener\UserLoggerListener:
+        tags:
+            - name: 'doctrine.event_listener'
+              event: 'prePersist'
+              connection: 'default'
+
+            - name: 'doctrine.event_listener'
+              event: 'preUpdate'
+              connection: 'default'
 
     app.menu_builder:
         class: App\Menu\Builder

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Model\TimeLoggerInterface;
 use App\Model\TimeLoggerTrait;
+use App\Model\UserLoggerInterface;
+use App\Model\UserLoggerTrait;
 use App\Repository\HotelRepository;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,8 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
-class Hotel implements TimeLoggerInterface {
+class Hotel implements TimeLoggerInterface ,UserLoggerInterface {
     use TimeLoggerTrait;
+    use UserLoggerTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

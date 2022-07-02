@@ -4,13 +4,17 @@ namespace App\Entity;
 
 use App\Model\TimeLoggerInterface;
 use App\Model\TimeLoggerTrait;
+use App\Model\UserLoggerInterface;
+use App\Model\UserLoggerTrait;
 use App\Repository\AttractionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AttractionRepository::class)]
-class Attraction implements TimeLoggerInterface
+class Attraction implements TimeLoggerInterface,UserLoggerInterface
 {
     use TimeLoggerTrait;
+    use UserLoggerTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

@@ -4,14 +4,17 @@ namespace App\Entity;
 
 use App\Model\TimeLoggerInterface;
 use App\Model\TimeLoggerTrait;
+use App\Model\UserLoggerInterface;
+use App\Model\UserLoggerTrait;
 use App\Repository\MessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
-class Messages implements  TimeLoggerInterface
+class Messages implements  TimeLoggerInterface,UserLoggerInterface
 {
     use TimeLoggerTrait;
+    use UserLoggerTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

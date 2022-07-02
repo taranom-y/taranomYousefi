@@ -3,7 +3,7 @@ namespace App\Listener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use App\Model\TimeLoggerInterface;
-class TimeLogeListener
+class TimeLoggerListener
 {
 
     public function prePersist(LifecycleEventArgs $args): void
@@ -17,7 +17,7 @@ class TimeLogeListener
         $entity->setUpdatedAt(new \DateTimeImmutable());
 
     }
-    public function preUpdate(LifecycleEventArgs $args): void
+    public function preUpdate(PreUpdateEventArgs  $args): void
     {
         $entity = $args->getObject();
 
