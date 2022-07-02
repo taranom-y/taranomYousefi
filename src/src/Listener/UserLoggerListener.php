@@ -2,19 +2,18 @@
 
 namespace App\Listener;
 
-use App\Model\UserLoggerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use App\Model\UserLoggerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
-
 class UserLoggerListener
 {
-    private  $tokenStorage;
+    private TokenStorageInterface $tokenStorage;
 
-    public function  __constructor(TokenStorageInterface $tokenStorage){
-        $this-> tokenStorage= $tokenStorage;
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
     }
 
 
@@ -25,8 +24,8 @@ class UserLoggerListener
         if (!$entity instanceof UserLoggerInterface) {
             return;
         }
-        $token = $this ->tokenStorage->getToken();
-        $user =$token==null ? null:$this->tokenStorage->getToken()->getUser();
+        $token = $this->tokenStorage->getToken();
+        $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
 
             $entity->setCreatedUser($user);
             $entity->setUpdatedUser($user);
@@ -42,8 +41,8 @@ class UserLoggerListener
         if (!$entity instanceof UserLoggerInterface) {
             return;
         }
-        $token = $this ->tokenStorage->getToken();
-        $user =$token==null ? null:$this->tokenStorage->getToken()->getUser();
+        $token = $this->tokenStorage->getToken();
+        $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
 
         $entity->setUpdatedUser($user);
 
