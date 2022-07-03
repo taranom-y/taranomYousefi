@@ -33,6 +33,12 @@ when@prod:
                 type: pool
                 pool: doctrine.result_cache_pool
 
+
+            filters:
+                softdeleteable:
+                     class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+
+                     enabled: true
     framework:
         cache:
             pools:

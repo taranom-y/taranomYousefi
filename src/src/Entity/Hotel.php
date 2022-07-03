@@ -12,8 +12,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
+#[Gedmo\SoftDeleteable(fieldName:"deletedAt")]
 class Hotel implements TimeLoggerInterface ,UserLoggerInterface {
     use TimeLoggerTrait;
     use UserLoggerTrait;
@@ -35,6 +37,8 @@ class Hotel implements TimeLoggerInterface ,UserLoggerInterface {
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Room::class, orphanRemoval: true)]
     private $rooms;
 
+    #[ORM\Column(type:"datetime",nullable:true)]
+    private $deletedAt;
 
     public function __construct()
     {
@@ -72,6 +76,22 @@ class Hotel implements TimeLoggerInterface ,UserLoggerInterface {
         $this->address = $address;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * @param mixed $deletedAt
+     */
+    public function setDeletedAt($deletedAt): void
+    {
+        $this->deletedAt = $deletedAt;
     }
 
 
