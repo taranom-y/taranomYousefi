@@ -28,6 +28,7 @@ class SearchService {
     public function search($hotelNameQuery): array {
 
         /** @var \App\Repository\HotelRepository $hotelRepository */
+
         $hotelRepository = $this->entityManager->getRepository(Hotel::class);
         return $hotelRepository->searchByName($hotelNameQuery);
     }
