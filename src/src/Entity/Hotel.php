@@ -2,16 +2,23 @@
 
 namespace App\Entity;
 
-use App\Model\TimeLoggableInterface;
+use App\Model\TimeLoggerInterface;
+use App\Model\TimeLoggerTrait;
+use App\Model\UserLoggerInterface;
+use App\Model\UserLoggerTrait;
 use App\Repository\HotelRepository;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
-class Hotel implements TimeLoggableInterface {
+#[Gedmo\SoftDeleteable(fieldName:"deletedAt")]
+class Hotel implements TimeLoggerInterface ,UserLoggerInterface {
+    use TimeLoggerTrait;
+    use UserLoggerTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -27,17 +34,11 @@ class Hotel implements TimeLoggableInterface {
     #[Assert\Length(min: 5)]
     private $address;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
-
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Room::class, orphanRemoval: true)]
     private $rooms;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $creator;
+    #[ORM\Column(type:"datetime",nullable:true)]
+    private $deletedAt;
 
     public function __construct()
     {
@@ -77,29 +78,22 @@ class Hotel implements TimeLoggableInterface {
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    /**
+     * @return mixed
+     */
+    public function getDeletedAt()
     {
-        return $this->createdAt;
+        return $this->deletedAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    /**
+     * @param mixed $deletedAt
+     */
+    public function setDeletedAt($deletedAt): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->deletedAt = $deletedAt;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Room>
@@ -131,15 +125,4 @@ class Hotel implements TimeLoggableInterface {
         return $this;
     }
 
-    public function getCreator(): ?string
-    {
-        return $this->creator;
-    }
-
-    public function setCreator(string $creator): self
-    {
-        $this->creator = $creator;
-
-        return $this;
-    }
 }

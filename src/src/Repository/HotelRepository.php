@@ -78,7 +78,7 @@ class HotelRepository extends ServiceEntityRepository
     public  function  searchByName($hotelNamePart){
         $db=$this->createQueryBuilder('h');
         return $db
-            ->andWhere($db->expr()->like('h.name','name'))
+            ->andWhere($db->expr()->like('h.name',':name'))
             ->setParameter('name',"%$hotelNamePart%")
             ->orderBy('h.name','ASC')
             ->getQuery()

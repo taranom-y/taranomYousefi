@@ -3,14 +3,19 @@
 namespace App\Entity;
 
 
-use App\Model\TimeLoggableInterface;
+use App\Model\TimeLoggerInterface;
+use App\Model\TimeLoggerTrait;
+use App\Model\UserLoggerInterface;
+use App\Model\UserLoggerTrait;
 use App\Repository\RoomRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
-class Room implements TimeLoggableInterface
+class Room implements TimeLoggerInterface,UserLoggerInterface
 {
+    use TimeLoggerTrait;
+    use UserLoggerTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -28,14 +33,7 @@ class Room implements TimeLoggableInterface
     #[ORM\JoinColumn(nullable: false)]
     private $hotel;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $creator;
 
     public function getId(): ?int
     {
@@ -74,42 +72,6 @@ class Room implements TimeLoggableInterface
     public function setHotel(?Hotel $hotel): self
     {
         $this->hotel = $hotel;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getCreator(): ?string
-    {
-        return $this->creator;
-    }
-
-    public function setCreator(string $creator): self
-    {
-        $this->creator = $creator;
 
         return $this;
     }
