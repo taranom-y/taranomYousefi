@@ -11,8 +11,8 @@ class SearchServiceTestIntegration extends KernelTestCase
     public function testSearch()
     {
         self::bootKernel();
-        $container = self::$container;
-        /**@var SearchService $searchservice*/
+        $container = static ::getContainer();
+
        $searchService  = $container->get(SearchService::class);
        $result=$searchService ->search("grand");
 
